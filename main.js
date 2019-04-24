@@ -7,9 +7,6 @@ $(document).ready(function() {
 				Score: {
 					total: 0
 				},
-				IMGBank: {
-
-				},
 				View: {
 					baseDiv: {
 						width: 100,
