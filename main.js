@@ -28,15 +28,28 @@ $(document).ready(function() {
 		return Store;
 	}
 
+	function createRawContainer() {
+		const div = document.createElement("div");
+		return $(div).addClass("rawContainer");
+	}
+
 	function createDiv() {
 		const div = document.createElement("div");
 		return $(div).addClass("div_100");
 	}
 	
-	Init();
-	
-	for (let i=0; i<8; i++) {
-		$("#main").append(createDiv());
+	function InitView() {
+		for (let r = 0; r < 4; r++) {
+			let cont = createRawContainer();
+			for (let col = 0; col < 8; col++) {
+				$(cont).append(createDiv());
+			}
+			$("#main").append(cont);
+		}
+		
 	}
+
+	Init();
+	InitView();
 
 })
