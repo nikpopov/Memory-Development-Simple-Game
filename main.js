@@ -1,10 +1,26 @@
 $(document).ready(function() {
 	
-	function InitStore() {
+	function Init() {
 		let Store;
 		if (!window.localStorage.getItem("Store")) {
 			Store = {
-				total: 0
+				Score: {
+					total: 0
+				},
+				IMGBank: {
+
+				},
+				View: {
+					baseDiv: {
+						width: 100,
+						height: 100,
+						borderRadius: 10,
+						margin: 10
+					},
+					baseMenu: {
+						
+					}
+				}
 			};
 			window.localStorage.setItem("Store", JSON.stringify(Store));
 		} else {
@@ -13,26 +29,13 @@ $(document).ready(function() {
 		return Store;
 	}
 
-	function InitIMGBank() {
-		let Store;
-		if (!window.localStorage.getItem("IMGBank")) {
-			IMGBank = {
-				
-			};
-			window.localStorage.setItem("IMGBank", JSON.stringify(IMGBank));
-		} else {
-			IMGBank = JSON.parse(window.localStorage.getItem("IMGBank"));
-		}
-		return IMGBank;
-	}
-
 	function createDiv() {
 		const div = document.createElement("div");
 		return $(div).addClass("div_100");
 	}
 	
-	InitStore();
-	InitIMGBank();
+	Init();
+	
 	for (let i=0; i<8; i++) {
 		$("#main").append(createDiv());
 	}
