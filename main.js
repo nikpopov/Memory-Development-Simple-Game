@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	function Init() {
+	function InitStore() {
 		let Store;
 		if (!window.localStorage.getItem("Store")) {
 			Store = {
@@ -10,6 +10,10 @@ $(document).ready(function() {
 				IMGBank: [
 				],
 				View: {
+					baseFigureSet: {
+						raws: 2,
+						cols: 3
+					},
 					baseDiv: {
 						width: 100,
 						height: 100,
@@ -28,6 +32,15 @@ $(document).ready(function() {
 		return Store;
 	}
 
+	function updateStore(store) {
+		if (window.localStorage.getItem("Store")) {
+			window.localStorage.removeItem("Store");
+			window.localStorage.setItem("Store", JSON.stringify(sore));
+		} else {
+			alert("There is nothing to updqate");
+		}
+	}
+
 	function createRawContainer() {
 		const div = document.createElement("div");
 		return $(div).addClass("rawContainer");
@@ -38,10 +51,13 @@ $(document).ready(function() {
 		return $(div).addClass("div_100");
 	}
 	
-	function InitView() {
-		for (let r = 0; r < 4; r++) {
+	function InitView(data) {
+		const store = data.View;
+		for (let raw = 0; raw < store.baseFigureSet.raws; raw++) {
 			let cont = createRawContainer();
-			for (let col = 0; col < 8; col++) {
+			let width = store.baseDiv.width * store.baseFigureSet.cols * 1.3;
+			cont.width(width);
+			for (let col = 0; col < store.baseFigureSet.cols; col++) {
 				$(cont).append(createDiv());
 			}
 			$("#main").append(cont);
@@ -49,7 +65,8 @@ $(document).ready(function() {
 		
 	}
 
-	Init();
-	InitView();
+	
+	const store = InitStore();
+	InitView(store);
 
 })
