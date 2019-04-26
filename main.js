@@ -39,9 +39,9 @@ $(document).ready(function() {
 	}
 	
 	function InitView() {
-		for (let r = 0; r < 4; r++) {
+		for (let r = 0; r < 2; r++) {
 			let cont = createRawContainer();
-			for (let col = 0; col < 8; col++) {
+			for (let col = 0; col < 4; col++) {
 				$(cont).append(createDiv());
 			}
 			$("#main").append(cont);
