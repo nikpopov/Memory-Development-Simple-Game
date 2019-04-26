@@ -46,6 +46,26 @@ $(document).ready(function() {
 		return $(div).addClass("rawContainer");
 	}
 
+	function adoptWidthRawContainer(data) {
+		const width = data.View.baseDiv.width * data.View.baseFigureSet.cols * 1.3;
+			if (width < window.innerWidth) {
+				return width;
+			} else {
+				alert("Too many items in a raw");
+				return false;
+			}
+	}
+
+	function adoptHeightRawContainer(data) {
+		const height = data.View.baseDiv.height * data.View.baseFigureSet.raws * 1.3;
+			if (height < window.innerHeight) {
+				return height;
+			} else {
+				alert("Too many items in a column");
+				return false;
+			}
+	}
+
 	function createDiv() {
 		const div = document.createElement("div");
 		return $(div).addClass("div_100");
@@ -54,8 +74,8 @@ $(document).ready(function() {
 	function InitView(data) {
 		const store = data.View;
 		for (let raw = 0; raw < store.baseFigureSet.raws; raw++) {
+			let width = adoptWidthRawContainer(data);
 			let cont = createRawContainer();
-			let width = store.baseDiv.width * store.baseFigureSet.cols * 1.3;
 			cont.width(width);
 			for (let col = 0; col < store.baseFigureSet.cols; col++) {
 				$(cont).append(createDiv());
