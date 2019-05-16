@@ -7,7 +7,7 @@
 	justify-content: space-around;
 	background-size: cover;
 }
-.div_100 {
+.brick {
 	display: inline-block;
 	border: 2px solid black;
 	min-width: 100px;
